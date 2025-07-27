@@ -24,8 +24,6 @@ from bot.token import use_test_bot as ut
 
 
 
-
-
 class Ping_Pokemon(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -35,11 +33,10 @@ class Ping_Pokemon(commands.Cog):
         self.type_collection = "type_ping"
         self.quest_collection = "quest_ping"
 
-        self.pokemon_names_file = "data/commands/pokemon/pokemon_names.csv"
-        self.pokemon_types_file = "data/commands/pokemon/pokemon_types.csv"
-        self.pokemon_rarity_file = "data/commands/pokemon/pokemon_rarity.csv"
+        self.pokemon_names_file = r"data\bot\cogs\register\pokemon_names.csv"
+        self.pokemon_types_file = r"data\bot\cogs\register\pokemon_types.csv"
+        self.pokemon_rarity_file = r"bot\cogs\register\rarity.csv"
         self.pokemon_description_file = None
-
         self.embed_default_color = primary_color()
         self.RESULTS_PER_PAGE = 10
         self.MAX_POKEMON = 50

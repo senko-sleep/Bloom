@@ -1,4 +1,5 @@
-import asyncio; from lib.setup.bot import *; asyncio.run(SetupManager().run_setup())
+#import asyncio; from lib.setup.bot import *; asyncio.run(SetupManager().run_setup())
+
  #######################
  
  # setup.py | installation script for the bot

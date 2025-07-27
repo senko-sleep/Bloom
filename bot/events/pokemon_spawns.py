@@ -21,31 +21,44 @@ from lib.utils.events.poketwo_spawns import PokemonImageBuilder, PokemonUtils
 
 
 logger = logging.getLogger(__name__)
-
 class PoketwoSpawnDetector(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.target_id = 716390085896962058
-        self.regional_forms = {'alola': 'Alolan', 'galar': 'Galarian', 'hisui': 'Hisuian', 'paldea': 'Paldean', 'unova': 'Unovan'}
-        self.lang_flags = {"ja": "🇯🇵", "de": "🇩🇪", "fr": "🇫🇷", "en": "🇺🇸"}
-        self.success_emoji = "<:green:1261639410181476443>"
-        self.error_emoji = "<:red:1261639413943762944>"
-        self.cross_emoji = "❌"
-        self.emojis = {"shiny": "<:shiny_sparkle:1394386258406412380>", "collection": "<:collection_ball:1394386212961124504>"}
+        self.regional_forms = {
+            r"alola": r"Alolan",
+            r"galar": r"Galarian",
+            r"hisui": r"Hisuian",
+            r"paldea": r"Paldean",
+            r"unova": r"Unovan"
+        }
+        self.lang_flags = {
+            r"ja": r"🇯🇵",
+            r"de": r"🇩🇪",
+            r"fr": r"🇫🇷",
+            r"en": r"🇺🇸"
+        }
+        self.success_emoji = r"<:green:1261639410181476443>"
+        self.error_emoji = r"<:red:1261639413943762944>"
+        self.cross_emoji = r"❌"
+        self.emojis = {
+            r"shiny": r"<:shiny_sparkle:1394386258406412380>",
+            r"collection": r"<:collection_ball:1394386212961124504>"
+        }
         self.predictor = Prediction()
         self.pp = Ping_Pokemon(bot)
 
-        # File paths centralized
         self.filepaths = {
-            "type_emojis": "data/bot/cogs/register/pokemon_types.json",
-            "quest_emojis": "data/bot/cogs/register/quests-emojis.json",
-            "description": "data/bot/cogs/register/description.csv",
-            "id": "data/bot/cogs/register/pokemon_names.csv",
-            "alt_names": "data/bot/cogs/register/alt_names.csv",
-            "flag_map": "data/bot/cogs/register/flag_map.json",
-            "special_names": "data/bot/cogs/register/special_names.csv",
-            "image_output": "data/events/poketwo_spawns/image/test.png"
+            r"type_emojis": r"data/bot/cogs/register/pokemon_types.json",
+            r"quest_emojis": r"data/bot/cogs/register/quests-emojis.json",
+            r"description": r"data/bot/cogs/register/descriptions.csv",
+            r"id": r"data/bot/cogs/register/pokemon_names.csv",
+            r"alt_names": r"data/bot/cogs/register/alt_names.csv",
+            r"flag_map": r"data\bot\cogs\register\flag.json",
+            r"special_names": r"data/bot/cogs/register/special_names.csv",
+            r"image_output": r"data/events/poketwo_spawns/image/test.png"
         }
+
 
         self.mongo = MongoHelper(AsyncIOMotorClient(os.getenv("MONGO_URI"))["Commands"]["pokemon"])
         self.pokemon_utils = PokemonUtils(
